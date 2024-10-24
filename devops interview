@@ -1,0 +1,22 @@
+
+
+https://www.youtube.com/watch?v=qvBHvD4oXMc
+
+https://kubernetes.io/docs/concepts/services-networking/network-policies/
+
+we can determine
+ ingress rule by namespace and ip and pod lables 
+and egress rules same 
+
+we can keep our database secret by adding ingrees rules in kind network policy 
+
+for eks version to be greater than 1.27
+
+he created 2 pods one of simple httpd and other redis 
+first he go redis pod and download redis 
+and second he went httptd pod by image httpd 
+and in network policy yaml from pod redis and to pod matchlables
+and if i tried to ping ip then u cant u can get pod ip by k get pod -o wide
+
+network policy does work with calico , cilium ,romana,weave net, 
+but not  work with flannel 
