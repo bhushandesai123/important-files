@@ -1,191 +1,167 @@
-<h2 style="color: blue;">Summary of Network Policies in Kubernetes</h2>
+devops interviews, [23/10/24 10:04 am]
+role of dockerfile 
+A Dockerfile is a text file that contains a set of instructions to build a Docker image. 
 
-<h3 style="color: green;">Key Concepts</h3>
-<ul>
-    <li><strong style="color: orange;">Ingress and Egress Rules:</strong>
-        <ul>
-            <li><strong>Ingress</strong> rules control incoming traffic to Pods based on namespace, IP, and Pod labels.</li><h2 style="color: blue;">Summary of Network Policies in Kubernetes</h2>
+it adds layer on base layer
 
-<h3 style="color: green;">Key Concepts</h3>
-<ul>
-    <li><strong style="color: orange;">Ingress and Egress Rules:</strong>
-        <ul>
-            <li><strong>Ingress</strong> rules control incoming traffic to Pods based on namespace, IP, and Pod labels.</li>
-            <li><strong>Egress</strong> rules manage outgoing traffic similarly.</li>
-        </ul>
-    </li>
+devops interviews, [23/10/24 12:14 pm]
+https://www.youtube.com/watch?v=Uy4okiZs8Y4
 
-    <li><strong style="color: orange;">Database Security:</strong>
-        <ul>
-            <li>Use ingress rules in a NetworkPolicy to restrict access to sensitive databases.</li>
-        </ul>
-    </li>
+what is monitoring tool do? 
 
-    <li><strong style="color: orange;">Kubernetes Version:</strong>
-        <ul>
-            <li>Ensure you are using EKS version greater than 1.27 for enhanced features.</li>
-        </ul>
-    </li>
-</ul>
+in grafana we can mesure cpu utilization,workload, storage actual answer of interview
 
-<h3 style="color: green;">Example Setup</h3>
-<ol>
-    <li><strong>Pods Creation:</strong>
-        <ul>
-            <li>Created two Pods: one for <strong>httpd</strong> and another for <strong>Redis</strong>.</li>
-            <li>Download Redis in the Redis Pod and use the httpd image for the other Pod.</li>
-        </ul>
-    </li>
+if u manually change infra what happened to terraform sta file 
+state file may corrupt
 
-    <li><strong>Network Policy YAML:</strong>
-        <ul>
-            <li>Define a NetworkPolicy that specifies ingress and egress rules based on Pod labels.</li>
-        </ul>
-    </li>
+subnet
 
-    <li><strong>Testing Connectivity:</strong>
-        <ul>
-            <li>Attempting to ping the Redis Pod from the httpd Pod will fail if the policy restricts it.</li>
-            <li>Use <code style="color: red;">kubectl get pod -o wide</code> to retrieve Pod IPs.</li>
-        </ul>
-    </li>
-</ol>
+A subnet (short for subnetwork) is a smaller, segmented part of a larger network, like a Virtual Private Cloud (VPC) in cloud environments. It allows you to divide your network into more manageable sections.
 
-<h3 style="color: green;">Compatibility</h3>
-<ul>
-    <li>Network Policies work with:
-        <ul style="color: blue;">
-            <li>Calico</li>
-            <li>Cilium</li>
-            <li>Romana</li>
-            <li>Weave Net</li>
-        </ul>
-    </li>
-    <li><strong style="color: orange;">Not compatible with Flannel.</strong></li>
-</ul>
+Public vs. Private:
+Improved Security private 
 
-<h2 style="color: blue;">Example Network Policy YAML</h2>
 
-<pre style="background-color: #f0f0f0; padding: 10px;">
-<code style="color: green;">
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: example-network-policy
-spec:
-  podSelector:
-    matchLabels:
-      app: redis
-  policyTypes:
-    - Ingress
-    - Egress
-  ingress:
-    - from:
-        - podSelector:
-            matchLabels:
-              app: httpd
-      ports:
-        - protocol: TCP
-          port: 6379
-  egress:
-    - to:
-        - podSelector:
-            matchLabels:
-              app: httpd
-      ports:
-        - protocol: TCP
-          port: 80
-</code></pre>
+efficient routing :—-> 
+Subnets in different regions help route user traffic to the closest server geographically
+route 53 does it automatically we dont need to do anything
 
-<h3 style="color: green;">Conclusion</h3>
 
-<p style="color: black;">Network Policies in Kubernetes allow for fine-grained control over traffic flow, enhancing security for applications like databases. By properly configuring ingress and egress rules, you can effectively manage communication between Pods while ensuring sensitive data remains protected.</p>
-            <li><strong>Egress</strong> rules manage outgoing traffic similarly.</li>
-        </ul>
-    </li>
+A Security Group (SG) in cloud environments like AWS is a virtual firewall that controls inbound and outbound traffic to your resources (e.g., EC2 instances).
 
-    <li><strong style="color: orange;">Database Security:</strong>
-        <ul>
-            <li>Use ingress rules in a NetworkPolicy to restrict access to sensitive databases.</li>
-        </ul>
-    </li>
+why sg is important 
+Fine-grained Control: You can easily update the SGs if you need to change who can access your resources, without downtime.
+What kind of traffic it is (protocols like HTTP, SSH, or database access).
+Which port the request is trying to reach (e.g., port 80 for HTTP, port 22 for SSH).
 
-    <li><strong style="color: orange;">Kubernetes Version:</strong>
-        <ul>
-            <li>Ensure you are using EKS version greater than 1.27 for enhanced features.</li>
-        </ul>
-    </li>
-</ul>
+what is the diffrent cost optimisation strategy u can use in industry
 
-<h3 style="color: green;">Example Setup</h3>
-<ol>
-    <li><strong>Pods Creation:</strong>
-        <ul>
-            <li>Created two Pods: one for <strong>httpd</strong> and another for <strong>Redis</strong>.</li>
-            <li>Download Redis in the Redis Pod and use the httpd image for the other Pod.</li>
-        </ul>
-    </li>
+1. Right-Sizing Resources
+2. Auto Scaling
+3. Use of Reserved Instances or Savings Plans
+6. Leverage Serverless Architecture
+7. Optimize Storage
+8. Monitor and Optimize Data Transfer Costs ontent delivery networks (CDNs) to cache content close to users and reduce long-distance data transfers, which can be costly
+9. Use of Cost Monitoring Tools
+10. Containerization
 
-    <li><strong>Network Policy YAML:</strong>
-        <ul>
-            <li>Define a NetworkPolicy that specifies ingress and egress rules based on Pod labels.</li>
-        </ul>
-    </li>
+devops interviews, [23/10/24 8:11 pm]
+https://www.youtube.com/watch?v=FAJBnCJUUhY
+how much big ur infra 
+10 services she says first infra was regular servers gradually moved to kubernetes
+kube-proxy ensures communication betwen pod
 
-    <li><strong>Testing Connectivity:</strong>
-        <ul>
-            <li>Attempting to ping the Redis Pod from the httpd Pod will fail if the policy restricts it.</li>
-            <li>Use <code style="color: red;">kubectl get pod -o wide</code> to retrieve Pod IPs.</li>
-        </ul>
-    </li>
-</ol>
+ Services are used to expose Pods to external or internal traffic, allowing different parts of an application to communicate with each other reliable
+clusterIp:——>
+Creates a virtual IP (ClusterIP) to make the service accessible only within the Kubernetes cluster.
+ backend needs to talk to a database service
 
-<h3 style="color: green;">Compatibility</h3>
-<ul>
-    <li>Network Policies work with:
-        <ul style="color: blue;">
-            <li>Calico</li>
-            <li>Cilium</li>
-            <li>Romana</li>
-            <li>Weave Net</li>
-        </ul>
-    </li>
-    <li><strong style="color: orange;">Not compatible with Flannel.</strong></li>
-</ul>
+/Nodeport 
+Exposes the service on a static port on each node in the cluster. The service becomes accessible externally by hitting the node's IP and the NodePort.
+Useful for small-scale testing or debugging, where you need to expose a service externally but without the complexity of a LoadBalancer.
+eveloper testing an internal API locally that needs temporary external access for integration testing, without setting up a load balancer.
 
-<h2 style="color: blue;">Example Network Policy YAML</h2>
+lb
+to distribute traffic to the Pods and expose the service to the internet or external users.
+A public-facing website or application where you need to distribute traffic to backend Pods across multiple nodes, such as an e-commerce platform or SaaS application.
 
-<pre style="background-color: #f0f0f0; padding: 10px;">
-<code style="color: green;">
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: example-network-policy
-spec:
-  podSelector:
-    matchLabels:
-      app: redis
-  policyTypes:
-    - Ingress
-    - Egress
-  ingress:
-    - from:
-        - podSelector:
-            matchLabels:
-              app: httpd
-      ports:
-        - protocol: TCP
-          port: 6379
-  egress:
-    - to:
-        - podSelector:
-            matchLabels:
-              app: httpd
-      ports:
-        - protocol: TCP
-          port: 80
-</code></pre>
+4. ExternalName
+Maps a service to an external DNS name, allowing services within the Kubernetes cluster to communicate with an external service by resolving the external DNS name
+Used when integrating with external resources that aren’t hosted in the Kubernetes environment, such as cloud-based databases or third-party SaaS applications
 
-<h3 style="color: green;">Conclusion</h3>
 
-<p style="color: black;">Network Policies in Kubernetes allow for fine-grained control over traffic flow, enhancing security for applications like databases. By properly configuring ingress and egress rules, you can effectively manage communication between Pods while ensuring sensitive data remains protected.</p>
+————————————————————————————-
+what is sli ,sla and slo
+
+SLI (Service Level Indicator):
+
+A metric that measures the performance or reliability of a service (e.g., uptime, response time).
+SLA (Service Level Agreement):
+
+A contract between a service provider and a customer that defines the expected level of service, often with penalties if not met (e.g., 99.9% uptime guarantee).
+SLO (Service Level Objective):
+
+A goal set for a specific SLI, defining the acceptable performance (e.g., 99.9% uptime is the SLO for an uptime SLI).
+
+in statement of puprose application we define sli 
+Monitor Service Metrics (SLIs):
+
+how do we understand that at point where are we now at slo at 98 % ,97% how do we know
+Use tools like Prometheus, Grafana, ELK Stack, or cloud monitoring services to track SLIs such as uptime, error rates, response times, etc.
+——————————————————————
+
+devops interviews, [23/10/24 8:11 pm]
+kubelet is manager 
+he is responsible for all work in node 
+api-server orders anything that should be done that is done by kubelete
+
+devops interviews, [24/10/24 5:17 pm]
+———————————————————————-
+
+devops interviews, [24/10/24 6:59 pm]
+handle k8 security
+
+network policy for pod 
+
+rbac
+use namespace for multi tenancy
+turn on audit logging
+
+
+Pause Container in Kubernetes   :———->
+if u want same ip across all container how ? 
+using pause container
+
+Purpose: Acts as a lightweight placeholder for the network namespace of a Pod, allowing containers to share the same IP address.
+Maintains Pod lifecycle; keeps the Pod alive even if other containers exit.   ,handled by Kubernetes.
+pod does not get ip but pause container get
+all containers take refrence of this container for network
+
+tutorial first pod is created with nginx image and testbox image 
+then if i do docker ps then 2 containers created  business containers  and one pause containers 
+1)  pause containers restarts then pod ,pause containers , business container all restart
+2) business cont deleted then only business cont deleted ,pod and pause containers remains
+
+devops interviews, [24/10/24 7:57 pm]
+https://www.youtube.com/watch?v=qvBHvD4oXMc
+
+https://kubernetes.io/docs/concepts/services-networking/network-policies/
+
+we can determine
+ ingress rule by namespace and ip and pod lables 
+and egress rules same 
+
+we can keep our database secret by adding ingrees rules in kind network policy 
+
+for eks version to be greater than 1.27
+
+he created 2 pods one of simple httpd and other redis 
+first he go redis pod and download redis 
+and second he went httptd pod by image httpd 
+and in network policy yaml from pod redis and to pod matchlables
+and if i tried to ping ip then u cant u can get pod ip by k get pod -o wide
+
+network policy does work with calico , cilium ,romana,weave net, 
+but not  work with flannel
+
+network agents not installed auomatically
+
+devops interviews, [24/10/24 11:20 pm]
+————————————————————
+
+devops interviews, [24/10/24 11:20 pm]
+p
+
+devops interviews, [24/10/24 11:20 pm]
+p
+
+devops interviews, [24/10/24 11:20 pm]
+———————————————
+
+devops interviews, [25/10/24 6:45 pm]
+https://www.youtube.com/watch?v=8oNbpS2gcx4&t=1081s
+
+devops interviews, [25/10/24 6:46 pm]
+explaindevops tech u have 
+
+they ask u actual what had happened
