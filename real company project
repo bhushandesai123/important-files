@@ -1,0 +1,14 @@
+
+sonarqube report
+
+Global Permissions and Project Permissions, allowing administrators to control who can see specific projects
+
+vpc endpoint use case in real time project 
+security ---> By creating an Interface VPC Endpoint for JFrog Artifactory, you can allow your Jenkins server to access the Artifactory service without traversing the public internet.
+
+Interface VPC Endpoint for SonarQube. This enables developers' instances in other VPCs or subnets to access SonarQube reports securely without exposing the service to the internet.
+
+Interface VPC Endpoint allows your EKS cluster to pull images directly from ECR without needing a NAT gateway or public IP addresses.
+
+
+
