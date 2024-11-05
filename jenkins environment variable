@@ -1,0 +1,23 @@
+real time  use case of environment variable in jenkins
+
+Deploying to Different Environments:
+
+first choice parameter is given and choices are production and stage user will input either of them then 
+
+in pipeline deploy stage 
+
+if [ "$ENVIRONMENT" == "production" ]; then
+  # Deploy to production server
+else
+  # Deploy to staging server
+fi
+
+/////////////////////////////////
+Managing API Keys and Credentials Securely:
+
+Manage Jenkins > Manage Credentials > (select your domain, typically "Global").
+
+ Add Credentials  ———————>    Secret text or Username with password.
+
+Inject Credentials into a Pipeline or Job
+
