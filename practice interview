@@ -1,0 +1,9 @@
+#cloud-config
+cloud_final_modules:
+  - [scripts-user, always]
+
+runcmd:
+  - sudo apt update -y
+  - sudo apt install docker.io -y
+
+
